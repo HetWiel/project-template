@@ -32,7 +32,7 @@ jobs:
     outputs:
       image: ${{ steps.naam.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Imagenaam bepalen (moet in kleine letters)
         id: naam
