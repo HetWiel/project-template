@@ -1,4 +1,4 @@
-# Geheimen nooit in Git
+# Never put secrets in Git
 .env
 .env.*
 !.env.example
@@ -9,7 +9,7 @@ __pycache__/
 .venv/
 venv/
 
-# Rommel
+# Clutter
 .DS_Store
 Thumbs.db
 .vscode/

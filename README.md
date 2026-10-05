@@ -1,71 +1,71 @@
-# Projectsjabloon voor hetwiel.dev
+# Project template for hetwiel.dev
 
-Een startpunt voor elk nieuw project: een kleine FastAPI-app in Docker,
-die bij elke `git push` automatisch online komt op `<naam>.hetwiel.dev`.
+A starting point for every new project: a small FastAPI app in Docker
+that goes live automatically on `<name>.hetwiel.dev` on every `git push`.
 
-## Nieuw project starten
+## Starting a new project
 
-### 1. Repo maken
-Zet dit sjabloon één keer op GitHub als repo `project-sjabloon` en vink bij
-**Settings → General** de optie **Template repository** aan. Daarna maak je
-elk nieuw project met de knop **Use this template**.
+### 1. Create the repo
+This repo is marked as a template (**Settings → General → Template repository**).
+Create each new project with the **Use this template** button.
 
-### 2. Naam invullen
-In `.github/workflows/deploy.yml` staat bovenaan:
+### 2. Fill in the name
+At the top of `.github/workflows/deploy.yml`:
 ```yaml
-PROJECT: mijnproject   # ← alleen dit aanpassen
+PROJECT: myproject   # ← only change this
 ```
-Gebruik alleen kleine letters en streepjes, bijv. `whatsapp-bot`.
+Use only lowercase letters and hyphens, e.g. `whatsapp-bot`.
 
-### 3. Secrets toevoegen
-In de nieuwe repo: **Settings → Secrets and variables → Actions**, dezelfde
-drie als bij `hetwiel`: `SERVER_HOST`, `SERVER_USER`, `SSH_PRIVATE_KEY`.
+### 3. Add the secrets
+In the new repo: **Settings → Secrets and variables → Actions**, the same
+three as in `hetwiel`: `SERVER_HOST`, `SERVER_USER`, `SSH_PRIVATE_KEY`.
 
-### 4. Project aanmelden in de hetwiel-repo
-In `docker-compose.yml` van **hetwiel**, onder `services:`:
+### 4. Register the project in the hetwiel repo
+In `docker-compose.yml` of **hetwiel**, under `services:`:
 ```yaml
-  mijnproject:
-    image: ghcr.io/<gebruikersnaam>/<reponaam>:latest
-    container_name: mijnproject
+  myproject:
+    image: ghcr.io/<username>/<repo name>:latest
+    container_name: myproject
     restart: unless-stopped
     env_file:
-      - path: ./env/mijnproject.env
+      - path: ./env/myproject.env
         required: false
     networks:
       - web
 ```
-In de `Caddyfile` van **hetwiel**:
+In the `Caddyfile` of **hetwiel**:
 ```
-mijnproject.hetwiel.dev {
-	reverse_proxy mijnproject:8000
+myproject.hetwiel.dev {
+	import security
+	reverse_proxy myproject:8000
 }
 ```
-Push de hetwiel-repo, zodat de server weet dat het project bestaat.
+Push the hetwiel repo, so the server knows the project exists.
 
-### 5. Pushen
-Push dit project. Bij **Actions** zie je eerst het bouwen en daarna de deploy.
-Daarna staat het op `https://mijnproject.hetwiel.dev`.
+### 5. Push
+Push this project. Under **Actions** you'll see the build first, then the deploy.
+After that it's at `https://myproject.hetwiel.dev`.
 
-> Volgorde bij een nieuw project: eerst één keer het project pushen
-> (zodat het image bestaat), dan de hetwiel-repo pushen.
+> Order for a new project: push the project once first
+> (so the image exists), then push the hetwiel repo.
 
-## Lokaal testen
+## Testing locally
 ```
-docker build -t mijnproject .
-docker run --rm -p 8000:8000 mijnproject
+docker build -t myproject .
+docker run --rm -p 8000:8000 myproject
 ```
 Open http://localhost:8000
 
-## Geheimen (wachtwoorden, API-keys)
-Nooit in Git. Zet ze op de server in `/opt/hetwiel/env/mijnproject.env`.
-Welke instellingen er zijn, staat in `.env.example`.
+## Secrets (passwords, API keys)
+Never in Git. Put them on the server in `/opt/hetwiel/env/myproject.env`.
+The available settings are listed in `.env.example`.
 
-## Privé houden
-Moet het project alleen voor jou zijn? Zet in de Caddyfile `basic_auth`
-erbij (voorbeeld staat in de Caddyfile van hetwiel), of laat het Caddy-blok
-weg en gebruik Tailscale.
+## Keeping it private
+Should the project be for you only? Add `basic_auth` in the Caddyfile
+(there's an example in the hetwiel Caddyfile), or leave out the Caddy block
+and use Tailscale.
 
-## Geen Python?
-Vervang `app/`, `requirements.txt` en de `Dockerfile` door wat bij je project
-past. Zorg alleen dat de app op poort 8000 luistert, of pas de poort aan in de
-Caddyfile. De workflow werkt voor elke taal.
+## Not Python?
+Replace `app/`, `requirements.txt` and the `Dockerfile` with whatever fits
+your project. Just make sure the app listens on port 8000, or change the port in the
+Caddyfile. The workflow works for any language.

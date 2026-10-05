@@ -1,4 +1,4 @@
-# Klein en veilig image voor een Python/FastAPI-project
+# Small and safe image for a Python/FastAPI project
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -6,13 +6,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Eerst alleen de requirements, zodat Docker dit stuk kan hergebruiken
+# Requirements first, so Docker can reuse this layer
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
 
-# Niet als root draaien
+# Don't run as root
 RUN useradd --create-home appuser
 USER appuser
 

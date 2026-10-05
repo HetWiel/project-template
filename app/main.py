@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-app = FastAPI(title="Mijn project")
+app = FastAPI(title="My project")
 
 
 @app.get("/", response_class=HTMLResponse)
 def home():
-    return "<h1>Het draait!</h1><p>Vervang dit door je eigen project.</p>"
+    return "<h1>It's running!</h1><p>Replace this with your own project.</p>"
 
 
 @app.get("/health")
 def health():
-    # Handig voor controle of het project nog leeft (bijv. met Uptime Kuma)
+    # Handy for checking the project is still alive (e.g. with Uptime Kuma)
     return {"status": "ok"}
