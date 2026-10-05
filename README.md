@@ -49,6 +49,16 @@ After that it's at `https://myproject.hetwiel.dev`.
 > Order for a new project: push the project once first
 > (so the image exists), then push the hetwiel repo.
 
+## The Apprentice
+Every project keeps a ledger of what it was built with and how well the maker
+understands each part: `apprentice.yml` (the levels, shown on hetwiel.dev/apprentice/)
+and `APPRENTICE.md` (a card per material, plus the teach-back log). The rules are in
+`CLAUDE.md`; the loop itself is the skill in `.claude/skills/apprentice/`.
+
+After creating a project from this template: set `work:` and `opened:` in
+`apprentice.yml`, and add the repo to the list in `site/content/apprentice.js`
+in the hetwiel repo so its ledger shows up on the site.
+
 ## Testing locally
 ```
 docker build -t myproject .

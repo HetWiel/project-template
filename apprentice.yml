@@ -1,0 +1,23 @@
+# The Apprentice: the ledger for this work.
+#
+# One entry per material the machine used to build this work.
+# level, from low to high:
+#   seen        the maker has looked at it; the machine built it
+#   understood  the maker explained it back in his own words and passed the questions
+#   by-hand     the maker made a change with it himself, without the machine typing
+#   taught      the maker can explain it to someone else, from scratch
+# since: the date the material reached its current level.
+#
+# The cards (what it is, where it lives, the questions, the by-hand task) are in APPRENTICE.md.
+# hetwiel.dev/apprentice/ is built from this file. Only change a level after a teach-back.
+
+
+work: My project        # ← the name as it appears on hetwiel.dev
+opened: 2026-01-01      # ← the day the project starts
+materials: []
+# Example entry (the apprentice skill adds these at the end of each build session):
+#  - id: reverse-proxy
+#    name: Reverse proxy
+#    note: One front door that sends each visitor to the right site or experiment.
+#    level: seen
+#    since: 2026-01-01
