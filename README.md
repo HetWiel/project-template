@@ -56,8 +56,14 @@ and `APPRENTICE.md` (a card per material, plus the teach-back log). The rules ar
 `CLAUDE.md`; the loop itself is the skill in `.claude/skills/apprentice/`.
 
 After creating a project from this template: set `work:` and `opened:` in
-`apprentice.yml`, and add the repo to the list in `site/content/apprentice.js`
-in the hetwiel repo so its ledger shows up on the site.
+`apprentice.yml`. Then, in the hetwiel repo:
+- add the repo to the list in `site/content/apprentice.js`, and a step that fetches it
+  (with `fetch-depth: 0`) to `.github/workflows/deploy.yml`, so its ledger shows up on the site
+  and counts towards the understanding debt;
+- add it to `site/content/clock.yml`, so the time from idea to online is measured (RQ1).
+
+Before a new work begins, check the brake on hetwiel.dev/apprentice/: no new work while the
+understanding debt stands above the threshold. The rules are in `CLAUDE.md`.
 
 ## Testing locally
 ```

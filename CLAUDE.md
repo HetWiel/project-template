@@ -35,3 +35,21 @@ Levels, low to high: `seen` → `understood` → `by-hand` → `taught`.
    at `understood`, offer it as a by-hand task instead of doing it: hints and pointers, no code.
 5. When the maker says *teach-back*, *apprentice* or `/apprentice`, run a teach-back session
    (see the skill).
+
+## The brake and the clock
+
+A session in a repo whose `apprentice.yml` has no `opened:` date yet is the start of a **new work**.
+Before building anything:
+
+6. **Check the brake.** The understanding debt is the number of materials at `seen` across all works;
+   hetwiel.dev/apprentice/ shows it and whether the brake is on (the rule itself is in the hetwiel
+   repo: `brake_threshold` in `site/content/site.yml`). While the brake is on, don't build the new work.
+   Tell the maker the debt and the threshold, and offer a teach-back in an existing work instead.
+7. **Start the clock.** With the brake off, add an entry to `site/content/clock.yml` in the **hetwiel**
+   repo (RQ1: idea to online): `work` (its name as it will appear on the front page), `idea` (the time
+   of the maker's request, with the time zone, e.g. `2026-11-02T20:15:00+01:00`), `source: recorded`,
+   and commit it right away. If this session can't reach the hetwiel repo, tell the maker the exact
+   time and ask him to add the repo to the session, so the moment isn't lost. When the work becomes
+   reachable for visitors, set `online` to the hetwiel commit that made it so (usually the one that
+   adds its block to the Caddyfile).
+
