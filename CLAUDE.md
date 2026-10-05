@@ -38,8 +38,8 @@ Levels, low to high: `seen` → `understood` → `by-hand` → `taught`.
 
 ## The brake and the clock
 
-A session in a repo whose `apprentice.yml` has no `opened:` date yet is the start of a **new work**.
-Before building anything:
+A session in a repo whose `apprentice.yml` still has the template's placeholders (`work: My project`,
+`opened: 2026-01-01`) is the start of a **new work**. Before building anything:
 
 6. **Check the brake.** The understanding debt is the number of materials at `seen` across all works;
    hetwiel.dev/apprentice/ shows it and whether the brake is on (the rule itself is in the hetwiel
